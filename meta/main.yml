@@ -1,0 +1,18 @@
+galaxy_info:
+  author: Bernd Doser <bernd.doser@h-its.org>
+  description: Install and register a GitLab-CI multi-runner
+  company: HITS gGmbH
+  license: BSD
+  min_ansible_version: 1.2
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - xenial
+
+  galaxy_tags:
+    - development
+    - ci
+    - gitlab
+
+  dependencies: []

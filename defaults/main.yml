@@ -1,0 +1,7 @@
+---
+# defaults file for ansible-gitlab-ci-multi-runner
+
+gitlab_ci_multi_runner_executor: docker
+gitlab_ci_multi_runner_name: docker-runner
+gitlab_ci_multi_runner_url: 
+gitlab_ci_multi_runner_registration_token: 

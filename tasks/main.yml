@@ -1,0 +1,48 @@
+---
+# tasks file for ansible-gitlab-ci-multi-runner
+
+- name: install apt packages 
+  apt: pkg={{ item }} update_cache=yes cache_valid_time=3600 state=present 
+  with_items: 
+    - python-pip 
+    - python-dev 
+    - libssl-dev 
+    - libffi-dev 
+
+- name: install pip modules
+  pip: name={{ item }}
+  with_items: 
+    - urllib3
+    - pyopenssl
+    - ndg-httpsclient
+    - pyasn1
+
+- name: get docker install script
+  get_url:
+    url: https://get.docker.com
+    dest: /tmp/install_docker.sh
+    mode: 'u+x'
+
+- name: install docker
+  shell: /tmp/install_docker.sh >> /tmp/install_docker.out
+
+- name: get gitlab runner repository script
+  get_url:
+    url: https://packages.gitlab.com/install/repositories/runner/gitlab-ci-multi-runner/script.deb.sh
+    dest: /tmp/add_gitlab_runner_repository.sh
+    mode: 'u+x'
+
+- name: add gitlab official repository
+  shell: /tmp/add_gitlab_runner_repository.sh >> /tmp/add_gitlab_runner_repository.out
+
+- name: install gitlab runner apt package
+  apt: pkg=gitlab-ci-multi-runner update_cache=yes cache_valid_time=3600
+
+- name: register runner
+  shell: "gitlab-runner register
+          --non-interactive
+          --name {{ gitlab_ci_multi_runner_name }}
+          --url {{ gitlab_ci_multi_runner_url }}
+          --registration-token {{ gitlab_ci_multi_runner_registration_token }}
+          --executor {{ gitlab_ci_multi_runner_executor }}
+          --docker-image {{ gitlab_ci_multi_runner_docker_image }}"

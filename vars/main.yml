@@ -1,0 +1,6 @@
+---
+# vars file for ansible-gitlab-ci-multi-runner
+
+gitlab_ci_multi_runner_docker_image: ruby:2.1
+gitlab_ci_multi_runner_docker_postgres: latest
+gitlab_ci_multi_runner_docker_mysql: latest
