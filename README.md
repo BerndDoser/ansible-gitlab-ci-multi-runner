@@ -1,6 +1,8 @@
 ansible-gitlab-ci-multi-runner
 ==============================
 
+[![Build Status](https://travis-ci.org/BerndDoser/ansible-gitlab-ci-multi-runner.png)](https://travis-ci.org/BerndDoser/ansible-gitlab-ci-multi-runner)
+
 Install and register a GitLab-CI multi-runner
 
 Requirements
@@ -33,9 +35,5 @@ Example Playbook
 License
 -------
 
-MIT
+[MIT](LICENSE.md)
 
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
