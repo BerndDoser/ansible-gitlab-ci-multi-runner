@@ -1,6 +1,12 @@
 ---
 # tasks file for ansible-gitlab-ci-multi-runner
 
+- name: update and upgrade apt packages
+  apt:
+    upgrade: dist
+    update_cache: yes
+    cache_valid_time: 3600
+
 - name: install apt packages 
   apt: pkg={{ item }} update_cache=yes cache_valid_time=3600 state=present 
   with_items: 
